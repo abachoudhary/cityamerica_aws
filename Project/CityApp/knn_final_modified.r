@@ -1,6 +1,6 @@
 #KNN algorithm for nearest neighbor state given states specific information
 args = commandArgs(trailingOnly = TRUE)
- 
+
 outputfile="output.json"
 # test if there is at least one argument: if not, return an error
 if (length(args)==0) {
@@ -154,25 +154,52 @@ print(var_CPIIndex)
 
 
 #install.packages('shiny', repos='https://cran.rstudio.com/')
+#install.packages(c("Rcpp", "readr"), repos='https://cran.rstudio.com/')
+#install.packages("readr",repos="https://github.com/tidyverse/readr")
 #Normalize 
+#install.packages("remotes",repos='https://cran.rstudio.com/')
+#library(remotes)
+#install_github("https://github.com/tidyverse/readr")
+#install.packages("tidyverse")
+#sudo su - -c "R -e \"install.packages('http://s3-us-west-2.amazonaws.com/10x.files/code/cellrangerRkit-1.1.0.tar.gz', repos=NULL)\""
+#sudo su - -c "R -e \"install.packages('http://stefvanbuuren.github.io/mice/', repos=NULL)\""
+#install.packages('mice',lib='/home/bitnami/Project/CityApp/R',repo = "https://cran.revolutionanalytics.com/")
 normalize <- function(x) {
   return ((x - min(x)) / (max(x) - min(x))) }
 
-
-library(shiny)
+#library(shiny)
+#library(readr)
+#library(devtools)
+# load package w/o installing
+#load_all('/home/bitnami/Project/CityApp/R')
+#library(mice,lib='/home/bitnami/Project/CityApp/R/')
+#library(VIM,lib='/home/bitnami/Project/CityApp/R/')
+#library(ggmap,lib='/home/bitnami/Project/CityApp/R/')
+#library(ggplot2,lib='/home/bitnami/Project/CityApp/R/')
+#library(tidyverse,lib='/home/bitnami/Project/CityApp/R/')
+#library(rpart,lib='/home/bitnami/Project/CityApp/R/')
+#library(DMwR,lib='/home/bitnami/Project/CityApp/R/')
+#library(caret,lib='/home/bitnami/Project/CityApp/R/')
+#library(rjson,lib='/home/bitnami/Project/CityApp/R/')
+#library(caret,lib='/home/bitnami/Project/CityApp/R/')
+#install.packages("png",repos="https://cran.wu.ac.at")
+#install.packages("RgoogleMaps",repos="http://rgooglemaps.r-forge.r-project.org/QuickTutorial.html")
+#install.packages("ggmap",repos="https://cran.wu.ac.at")
+#install.packages("tidyverse",repos='http://lib.stat.cmu.edu/R/CRAN/',dependencies = TRUE)
+#install.packages("readr",repos="https://cran.wu.ac.at")
 library(readr)
 library(mice)
 library(VIM)
-library(ggmap)
+#library(ggmap)
 library(ggplot2)
-library(tidyverse)
+#library(tidyverse)
 library(rpart)
 library(DMwR)
 library(caret)
 library(rjson)
 library(caret)
 
-dat <- read_csv("data_final_knn.csv")
+dat <- read_csv("Data_final_knn.csv")
 dat <- dat[1:352,]
 # check 
 #dim(dat)
@@ -433,7 +460,7 @@ knn_predict12 <- knn(train = trainSplit[,3:ncol(trainSplit)], test = testSplit[,
 prop.table(table(knn_predict12, testSplit[,1]))
 knn_predict16 <- knn(train = trainSplit[,3:ncol(trainSplit)], test = testSplit[,3:ncol(trainSplit)], cl = trainSplit[,1], k=16)
 prop.table(table(knn_predict16, testSplit[,1]))
-
+#install.packages("FNN",repos="https://cran.wu.ac.at")
 library(FNN)
 #Refit with all data; choose k = 10
 data_model$Tech_Hub <- as.factor(data_model$Tech_Hub)
@@ -459,7 +486,7 @@ colnames(near)=c("MSA", "First", "Second", "Third", "Fourth","Fifth", "Sixth", "
 #temp dataset of the row number and MSA name
 temp <- cbind(seq(1, nrow(data), 1), dat_c[,1]) 
 colnames(temp)=c("Row", "MSA")
- 
+
 #First
 near <- merge(near, temp, by.x = "First", by.y = "Row")
 near <- near[, -1]   
@@ -510,22 +537,26 @@ near <- merge(near, temp, by.x = "Tenth", by.y = "Row")
 near <- near[, -1] 
 colnames(near)[colnames(near)=="MSA.y"] <- "Tenth"
 colnames(near)[colnames(near)=="MSA.x"] <- "MSA"
- 
- selectedmsa <- near[which(near$MSA == msa_selected ), ]
- #print(selectedmsa)
 
- 
- selectedmsa$MSA = as.character(selectedmsa$MSA)
- selectedmsa$First = as.character(selectedmsa$First)
- selectedmsa$Second = as.character(selectedmsa$Second)
- selectedmsa$Third = as.character(selectedmsa$Third)
- selectedmsa$Fourth = as.character(selectedmsa$Fourth)
- selectedmsa$Fifth = as.character(selectedmsa$Fifth)
- selectedmsa$Sixth = as.character(selectedmsa$Sixth)
- selectedmsa$Seventh = as.character(selectedmsa$Seventh)
- selectedmsa$Eighth = as.character(selectedmsa$Eighth)
- selectedmsa$Ninth = as.character(selectedmsa$Ninth)
+selectedmsa <- near[which(near$MSA == msa_selected ), ]
+#print(selectedmsa)
 
- x <- toJSON(unname(split(selectedmsa, 1:nrow(selectedmsa))))
- write(x,outputfile)
- x 
+
+selectedmsa$MSA = as.character(selectedmsa$MSA)
+selectedmsa$First = as.character(selectedmsa$First)
+selectedmsa$Second = as.character(selectedmsa$Second)
+selectedmsa$Third = as.character(selectedmsa$Third)
+selectedmsa$Fourth = as.character(selectedmsa$Fourth)
+selectedmsa$Fifth = as.character(selectedmsa$Fifth)
+selectedmsa$Sixth = as.character(selectedmsa$Sixth)
+selectedmsa$Seventh = as.character(selectedmsa$Seventh)
+selectedmsa$Eighth = as.character(selectedmsa$Eighth)
+selectedmsa$Ninth = as.character(selectedmsa$Ninth)
+
+x <- toJSON(unname(split(selectedmsa, 1:nrow(selectedmsa))))
+#Check its existence
+if (file.exists(outputfile)) 
+  #Delete file if it exists
+  file.remove(outputfile)
+write(x,outputfile)
+x 

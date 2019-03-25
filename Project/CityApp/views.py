@@ -27,7 +27,8 @@ import urllib.parse as urlparse
 @api_view(['GET'])
 def main(self):
  # return JsonResponse(dict(geners=tuple("Give a valid Input/No Input(MSA) selected")))
- return JsonResponse(dict(error=str("Give a valid Input/No Input(MSA) selected")))
+ #return JsonResponse(dict(error=str("Give a valid Input/No Input(MSA) selected")))
+  return render(self, 'Homepage.html')
 #@action(detail=True)
 @api_view(['GET'])
 def getMsa(self):
@@ -141,19 +142,19 @@ def executekmeansmodel(request):
 		    # Define command and arguments
         command = 'Rscript'
         #path2script = 'D:/Virtual Directory/CityProject/CityApp/rscript1.R'
-        path2script = '/home/bitnami/Project/CityApp/knn_final_modified.r'
+        path2script ='/home/bitnami/Project/CityApp/knn_final_modified.r'
         #projects_json_fn = 'projects.json'
         #args = projects_json_fn  
         arg = [str(msa),str(age),str(AvgProp),str(Bet10and14),str(Bet5and9),str(Bet65and74),str(LandArea),str(Net25and34),str(Under5),str(CorpTaxMin),str(CorpTaxMax),str(CO2Index),str(TotEnrollment),str(PercentBach),str(LaborForceAnnGrowth),str(PropPricetoIncomeRatio),str(CostLivingComposit),str(NumAirline),str(TrafficIndex),str(GDPperCap),str(GDP5Year),str(MedianIncome),str(CPIIndex)]
         #print(arg)Rscript --vanilla Knn_final_modified.r  sample.json New-York-City-NY 3.714881 2.286081 15.234578 15.657222 16.096229 4.023810 16.100002 15.657222 7.058431 2.880952 2.3142865 5 5 3.143557 5 5 5 5 5 5 5 3.825108
-        cmd = [command, path2script] + arg 
+        cmd = [command,path2script]+arg 
         #+ msa + age + AvgProp+Bet5and9+Bet65and74+LandArea+Net25and34+Under5+CorpTaxMin+CorpTaxMax+CO2Index+TotEnrollment+PercentBach+LaborForceAnnGrowth+PropPricetoIncomeRatio+CostLivingComposit+NumAirline+TrafficIndex+GDPperCap+GDP5Year+MedianIncome+CPIIndex
         # check_output will run the command and store to result
-        #try:
-            #subprocess.check_output(cmd, universal_newlines=True,shell=True,stderr=subprocess.STDOUT)
+        try:
+            subprocess.check_output(cmd,universal_newlines=True,stderr=subprocess.STDOUT)
             #subprocess.check_output("dir /f",shell=True,stderr=subprocess.STDOUT)
-        #except subprocess.CalledProcessError as e:
-            #raise RuntimeError("command '{}' return with error (code {}): {}".format(e.cmd, e.returncode, e.output))
+        except subprocess.CalledProcessError as e:
+            raise RuntimeError("command '{}' return with error (code {}): {}".format(e.cmd, e.returncode, e.output))
         
         #Hardcoded String
         # cities = {"MSA":"New York Newark Jersey City,NY NJ PA","First":"Chattanooga,TN GA","Second":"Canton Massillon,OH","Third":"Davenport Moline Rock Island,IA IL","Fourth":"Binghamton,NY","Fifth":"Columbia,SC","Sixth":"Chico,CA","Seventh":"Cleveland,TN","Eighth":"Cedar Rapids,IA","Ninth":"Des Moines West Des Moines,IA"}#subprocess.call(["/usr/bin/Rscript","--vanilla","D:/Virtual Directory/CityProject/CityApp/rscript1.R"])
@@ -172,10 +173,10 @@ def executekmeansmodel(request):
         # webbrowser.open_new_tab('kmean.html')
 
         # Below code opens a json file and parses it to print
-        with open('/home/bitnami/Project/CityApp/output.json', 'r') as f:
+        with open('/home/bitnami/Project/output.json', 'r') as f:
              sample_dict = json.load(f)
         for city in sample_dict:
-            #print(list(city.values()))
+            print(list(city.values()))
             #print(list(city.keys()))
             
         #return Response(cities)
