@@ -136,6 +136,7 @@
   }
   .nav-tabs li a {
       color: #777;
+     
   }
   #googleMap {
       width: 100%;
@@ -159,6 +160,7 @@
   }
   .navbar-nav li a:hover {
       color: #fff !important;
+       cursor: pointer;
   }
   }
   .navbar-nav li.active a {
@@ -167,6 +169,7 @@
   }
   .navbar-default .navbar-toggle {
       border-color: transparent;
+       cursor: pointer;
   }
   .open .dropdown-toggle {
       color: #fff;
@@ -259,10 +262,10 @@ margin-left: calc(50% - 50vw);
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="http://3.208.4.11:8080/home">HOME</a></li>
-        <li><a href="http://3.208.4.11:8080/analytics">Analytics</a></li>
-        <li><a href="http://3.208.4.11:8080/source">Data Sources</a></li>
-        <li><a onClick="window.location='http://3.208.4.11:8080/home#band'">About US</a></li>
+        <li><a href="http://50.17.36.250:8080">HOME</a></li>
+        <li><a href="http://50.17.36.250:8080/analytics">Analytics</a></li>
+        <li><a href="http://50.17.36.250:8080/source">Data Sources</a></li>
+        <li><a onClick="window.location='http://50.17.36.250:8080/home#band'">About US</a></li>
         <!-- <li class="dropdown"> -->
           <!-- <a class="dropdown-toggle" data-toggle="dropdown" href="#">MORE -->
           <!-- <span class="caret"></span></a> -->
@@ -270,8 +273,7 @@ margin-left: calc(50% - 50vw);
             <!-- <li><a href="#">All MSA</a></li> -->
          <!-- </ul> -->
         <!-- </li> -->
-        <li><a href="#"><span class="glyphicon glyphicon-search"></span></a></li>
-      </ul>
+       </ul>
     </div>
   </div>
 </nav>
@@ -307,7 +309,7 @@ $(document).ready(function(){
 })  
 </script>
 <div class="container">
-<!-- <h2>Analytics models used are as follows:-</h2> -->
+
 <ul>
 <li><a href="https://public.tableau.com/profile/nyu.one.america#!/vizhome/UnivariateVisuals_USA/Population">Population</a></li>
 <li><a href="https://public.tableau.com/profile/nyu.one.america#!/vizhome/UnivariateVisuals_USA/GDPperCapita">GDPperCapita</a></li>
