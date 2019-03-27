@@ -449,7 +449,7 @@ list-style-type: none;
     //    params = val.target.selectedOptions[0].innerText;
     //var city = localStorage.getItem('city');
         var http = new XMLHttpRequest();
-    var url = 'http://50.17.36.250:8080/msadetails?NAME='+city;
+    var url = 'http://3.208.4.11:8080/msadetails?NAME='+city;
   //  var data = params ;
     http.open('GET', url, true);
 
@@ -546,10 +546,10 @@ list-style-type: none;
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="http://50.17.36.250:8080">HOME</a></li>
-        <li><a href="http://50.17.36.250:8080/analytics">Analytics</a></li>
-        <li><a href="http://50.17.36.250:8080/source">Data Sources</a></li>
-        <li><a onClick="window.location='http://50.17.36.250:8080/home#band'">About US</a></li>
+        <li><a href="http://3.208.4.11:8080">HOME</a></li>
+        <li><a href="http://3.208.4.11:8080/analytics">Analytics</a></li>
+        <li><a href="http://3.208.4.11:8080/source">Data Sources</a></li>
+        <li><a onClick="window.location='http://3.208.4.11:8080/home#band'">About US</a></li>
         <!-- <li class="dropdown"> -->
           <!-- <a class="dropdown-toggle" data-toggle="dropdown" href="#">MORE -->
           <!-- <span class="caret"></span></a> -->
@@ -574,7 +574,7 @@ list-style-type: none;
 	 <div class="breadcrumbc">
 	 
 	<ul class="breadcrumb">
-  <li><a href="http://50.17.36.250:8080/home">Home</a></li>
+  <li><a href="http://3.208.4.11:8080/home">Home</a></li>
   <li id="bd">MSA details</li>
    </ul>
    </div>
@@ -600,7 +600,7 @@ list-style-type: none;
 	 <div class="container">
 	 <!-- <p><button class="buttonbig" style="vertical-align:middle" onclick='onSelect("New York Newark Jersey City,NY NJ PA","45","2000","12000")'><span>Nearest neighbours</span></button></p>-->
 	   
-	  <a href="http://50.17.36.250:8080/KMeanscreen" ><em>Click here for similar MSA's (nearest neighbours) </a>	</em>
+	  <a href="http://3.208.4.11:8080/KMeanscreen" ><em>Click here for similar MSA's (nearest neighbours) </a>	</em>
 	  
 
 <button class="buttonbig"onclick="myFunction()">Nearest neighbours</button>
@@ -678,7 +678,7 @@ list-style-type: none;
                         //    params = val.target.selectedOptions[0].innerText;
                         //localStorage.setItem('city',val);
                             var http = new XMLHttpRequest();
-                            var url = 'http://50.17.36.250:8080/kmeansmodel?data='+a;
+                            var url = 'http://3.208.4.11:8080/kmeansmodel?data='+a;
                         // var url = 'http://127.0.0.1:8000/msadetails?MSA='+ val;
                       //  var data = params ;
                         http.open('GET', url, true);
@@ -703,7 +703,7 @@ list-style-type: none;
 							
 							for (var key in D) {
 									 var newElement = document.createElement('li');
-								     newElement.innerHTML = '<a href="http://50.17.36.250:8080/details.html?city='+D[key]+'">'+D[key]+'</a>';
+								     newElement.innerHTML = '<a href="http://3.208.4.11:8080/details.html?city='+D[key]+'">'+D[key]+'</a>';
 									 links.appendChild(newElement);
 							}
 							

@@ -257,9 +257,9 @@ margin-left: calc(50% - 50vw);
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="http://50.17.36.250:8080">HOME</a></li>
-        <li><a href="http://50.17.36.250:8080/analytics">Analytics</a></li>
-        <li><a href="http://50.17.36.250:8080/source">Data Sources</a></li>
+        <li><a href="http://3.208.4.11:8080">HOME</a></li>
+        <li><a href="http://3.208.4.11:8080/analytics">Analytics</a></li>
+        <li><a href="http://3.208.4.11:8080/source">Data Sources</a></li>
         <li><a href="#band">About US</a></li>
         <!-- <li class="dropdown"> -->
           <!-- <a class="dropdown-toggle" data-toggle="dropdown" href="#">MORE -->
@@ -371,7 +371,7 @@ function onSelectChange(val){
   //    params = val.target.selectedOptions[0].innerText;
   localStorage.setItem('city',val);
       var http = new XMLHttpRequest();
-  var url = 'http://50.17.36.250:8080/msadetails?NAME='+ val;
+  var url = 'http://3.208.4.11:8080/msadetails?NAME='+ val;
 //  var data = params ;
   http.open('GET', url, true);
   http.withCredentials = true;

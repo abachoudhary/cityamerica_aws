@@ -316,7 +316,7 @@ function onSelectChange(val){
   //    params = val.target.selectedOptions[0].innerText;
   localStorage.setItem('city',val);
       var http = new XMLHttpRequest();
-  var url = 'http://45.35.64.128:8000/msadetails?MSA='+ val;
+  var url = 'http://3.208.4.11:8080/msadetails?MSA='+ val;
 //  var data = params ;
   http.open('GET', url, true);
   http.withCredentials = true;
@@ -501,7 +501,12 @@ $(document).ready(function(){
         <a class="navbar-brand" href="#myPage">Logo</a>
       </div>
       <div class="collapse navbar-collapse" id="myNavbar">
-        <ul class="nav navbar-nav navbar-right">
+            <ul class="nav navbar-nav navbar-right">
+        <li><a href="http://3.208.4.11:8080">HOME</a></li>
+        <li><a href="http://3.208.4.11:8080/analytics">Analytics</a></li>
+        <li><a href="http://3.208.4.11:8080/source">Data Sources</a></li>
+        <li><a onClick="window.location='http://3.208.4.11:8080/home#band'"">About US</a></li>
+        <!--<ul class="nav navbar-nav navbar-right">
           <li><a href="http://45.35.64.128:8000/home">HOME</a></li>
           <li><a href="#details">Details</a></li>
           <li><a href="#tour">TOUR Cities</a></li>
@@ -514,6 +519,7 @@ $(document).ready(function(){
             </ul>
           </li>
           <li><a href="#"><span class="glyphicon glyphicon-search"></span></a></li>
+          -->
         </ul>
       </div>
     </div>
