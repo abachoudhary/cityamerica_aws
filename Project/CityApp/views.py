@@ -118,7 +118,7 @@ def executekmeansmodel(request):
 	    # Define command and arguments
         command = 'Rscript'
         #path2script = 'D:/Virtual Directory/CityProject/CityApp/rscript1.R'
-        path2script ='/home/bitnami/ABC_temp/cityamerica_aws/Project/CityApp/KNN_4wt.R'
+        path2script ='CityApp/KNN_4wt.R'
         #projects_json_fn = 'projects.json'
         #args = projects_json_fn  
         #arg = [str(msa),str(age),str(AvgProp),str(Bet10and14),str(Bet5and9),str(Bet65and74),str(LandArea),str(Net25and34),str(Under5),str(CorpTaxMin),str(CorpTaxMax),str(CO2Index),str(TotEnrollment),str(PercentBach),str(LaborForceAnnGrowth),str(PropPricetoIncomeRatio),str(CostLivingComposit),str(NumAirline),str(TrafficIndex),str(GDPperCap),str(GDP5Year),str(MedianIncome),str(CPIIndex)]
@@ -149,12 +149,13 @@ def executekmeansmodel(request):
         # webbrowser.get('chrome').open('kmean.html')
         # webbrowser.open_new_tab('kmean.html')
         # Below code opens a json file and parses it to print
-        with open('/home/bitnami/Project/output.json', 'r') as f:
+        with open('/home/ubuntu/cityamerica_aws/Project/CityApp/output.json', 'r') as f:
             sample_dict = json.load(f)
+        print(sample_dict)
         for city in sample_dict:
             print(list(city.values()))
             #print(list(city.keys()))
-            
+                
         #return Response(cities)
         #return JsonResponse(dict(Message=str("K-mean model run successfully!")))
             return Response(list(city.values()))

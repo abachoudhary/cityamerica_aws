@@ -11,12 +11,12 @@ library(rpart)
 library(class)
 library(gmodels)
 library(FNN)
-
+library(rjson)
 
 ################# ADD 4 parameters like earlier script . previously we have 16 now we have only 4
 args = commandArgs(trailingOnly = TRUE)
 
-outputfile="output.json"
+outputfile="/home/ubuntu/cityamerica_aws/Project/CityApp/output.json"
 # test if there is at least one argument: if not, return an error
 if (length(args)<5) {
   print("arguments 0")
@@ -35,11 +35,11 @@ if (length(args)<5) {
   print("All 5 arguments taken ")
 }
 
-msa_selected <- 'Abilene-TX'
-wtalent <- .3
-wconnect <- .25
-wcost <- .3
-wquality <- .15
+wtalent <- as.numeric( wtalent)
+wconnect <- as.numeric( wconnect)
+wcost <- as.numeric( wcost)
+wquality <- as.numeric( wquality)
+
 
 print("msa_selected is as below")
 
@@ -69,34 +69,14 @@ print(wquality)
 #setwd("H:/NYU BACKUP/Capstone/Knn")
 
 
-data_model <- read_csv("scoretable_final.csv")
+data_model <- read_csv("CityApp/scoretable_final_modified.csv")
 #dim(dat)
-tc <- data <- read_csv("data_score.csv")
+tc <- data <- read_csv("CityApp/data_score_modified.csv")
 data_model <- merge(tc, data_model, by = 'MSA')
 data_model <- data_model[-c(1:6,8:131)]
 data_model <- data_model[-c(2)]
 
-#view(data_model)
-
-
-
-#FIRST MODEL BEFORE PLAYING WITH WEIGHTS
-#prc_train <- data_model[1:356,]
-#prc_test <- data_model[5:356,]
-#prc_train_labels <- data_model[1:356, 1]
-#prc_test_labels <- data_model[5:356, 1]
-#model1 <- knn(train = prc_train, test = prc_test, cl = prc_train_labels, k=10)
-
-#CrossTable(x=prc_test_labels, y=model1, prop.chisq = FALSE)
-#kdist <- knn.dist(model1)
-#view(kdist)
-
-#view(data_model)
-#SECOND MODELUse default weights to train algorithm
-wtalent <- .3
-wconnect <- .25
-wcost <- .3
-wquality <- .15 
+  
 data_model$talent_score <- data_model$talent_score*wtalent
 data_model$connect_score <- data_model$connect_score*wconnect
 data_model$cost_score <- data_model$cost_score*wcost
