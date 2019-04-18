@@ -7,7 +7,7 @@
       <meta http-equiv="Access-Control-Allow-Origin" content="*">
   <!-- Plotly.js -->
   <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
-  <script src="https://code.jquery.com/jquery-1.10.2.js"></script>	
+  <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
@@ -29,14 +29,14 @@
     cursor: pointer;
     margin: 4px;
   }
-  
+
   .button span {
     cursor: pointer;
     display: inline-block;
     position: relative;
     transition: 0.5s;
   }
-  
+
   .button span:after {
     content: '\00bb';
     position: absolute;
@@ -45,11 +45,11 @@
     right: -20px;
     transition: 0.5s;
   }
-  
+
   .button:hover span {
     padding-right: 25px;
   }
-  
+
   .button:hover span:after {
     opacity: 1;
     right: 0;
@@ -60,7 +60,7 @@
   }
   h3, h4 {
       margin: 10px 0 30px 0;
-      letter-spacing: 10px;      
+      letter-spacing: 10px;
       font-size: 20px;
       color: #111;
   }
@@ -79,7 +79,7 @@
   }
   .carousel-inner img {
       -webkit-filter: grayscale(90%);
-      filter: grayscale(90%); /* make all photos black and white */ 
+      filter: grayscale(90%); /* make all photos black and white */
       width: 100%; /* Set width to 100% */
       margin: auto;
   }
@@ -143,7 +143,7 @@
       height: 400px;
       -webkit-filter: grayscale(100%);
       filter: grayscale(100%);
-  }  
+  }
   .navbar {
       font-family: Montserrat, sans-serif;
       margin-bottom: 0;
@@ -155,7 +155,7 @@
 	  margin:auto;
 	  white-space: nowrap;
   }
-  .navbar li a, .navbar .navbar-brand { 
+  .navbar li a, .navbar .navbar-brand {
       color: #d5d5d5 !important;
   }
   .navbar-nav li a:hover {
@@ -186,7 +186,7 @@
    footer {
       background-color: #2d2d30;
       color: #f5f5f5;
-     
+
   }
   footer a {
       color: #f5f5f5;
@@ -194,7 +194,7 @@
   footer a:hover {
       color: #777;
       text-decoration: none;
-  } 
+  }
   .form-control {
       border-radius: 0;
   }
@@ -251,7 +251,7 @@ margin-left: calc(50% - 50vw);
       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
-        <span class="icon-bar"></span>                        
+        <span class="icon-bar"></span>
       </button>
       <a class="navbar-brand" href="#myPage">Logo</a>
     </div>
@@ -267,7 +267,7 @@ margin-left: calc(50% - 50vw);
           <!-- <ul class="dropdown-menu"> -->
             <!-- <li><a href="#">All MSA</a></li> -->
          <!-- </ul> -->
-        <!-- </li> 
+        <!-- </li>
         <li><a href="#"><span class="glyphicon glyphicon-search"></span></a></li>-->
       </ul>
     </div>
@@ -291,7 +291,7 @@ margin-left: calc(50% - 50vw);
         <div class="carousel-caption">
           <h3>New York</h3>
           <p>The atmosphere in New York is lorem ipsum.</p>
-        </div>      
+        </div>
       </div>
 
       <div class="item">
@@ -299,29 +299,29 @@ margin-left: calc(50% - 50vw);
         <div class="carousel-caption">
           <h3>Austin</h3>
           <p>The Round Rock, a large stone in Brushy Creek!</p>
-        </div>      
+        </div>
       </div>
-    
+
       <div class="item">
         <img src="{{ MEDIA_URL }}Denver Aurora Lakewood.jpg" alt="Denver" width="1200" height="700">
         <div class="carousel-caption">
           <h3>Denver Aurora Lakewood</h3>
           <p>The 17th most populous primary statistical area of the United States.</p>
-        </div>      
+        </div>
       </div>
         <div class="item">
           <img src="{{ MEDIA_URL }}pittsburgh.jpg" alt="Pittsburgh" width="1200" height="700">
           <div class="carousel-caption">
             <h3>Pittsburgh</h3>
             <p>An early-20th-century industrial capita.</p>
-          </div>   
-        </div>     
+          </div>
+        </div>
         <div class="item">
             <img src="{{ MEDIA_URL }}San Francisco.jpg" alt="San Francisco" width="1200" height="700">
             <div class="carousel-caption">
             <h3>San Francisco</h3>
             <p>A year-round fog, iconic Golden Gate Bridge, cable cars and colorful Victorian houses.</p>
-            </div>      
+            </div>
         </div>
     </div>
     <!-- Left and right controls -->
@@ -348,17 +348,17 @@ make decisions based on multi dimensional city data.We have created a fictional 
 				<!-- <button class="tablinks" onclick="openCity('http://45.35.64.128:8000/home#graphDiv','All MSA')">All MSA</button> -->
                 <!-- <button class="tablinks" onclick="openCity('charts.html', 'Charts')">Charts</button> -->
               <!-- </div> -->
-              
+
               <!-- <div id="Top 10" class="tabcontent"> -->
                 <!-- <h3>Top 5</h3> -->
                 <!-- <p>Top 5 MSA of USA.</p> -->
               <!-- </div> -->
-              
+
               <!-- <div id="All MSA" class="tabcontent"> -->
                 <!-- <h3>All MSA</h3> -->
                 <!-- <p>All MSA in USA.</p>  -->
               <!-- </div> -->
-              
+
               <!-- <div id="Charts" class="tabcontent"> -->
                 <!-- <h3>Charts</h3> -->
                 <!-- <p>Charts representation of data.</p> -->
@@ -366,7 +366,7 @@ make decisions based on multi dimensional city data.We have created a fictional 
 <!-- </div> -->
 <script>
 function onSelectChange(val){
-      console.log(val);     
+      console.log(val);
      // console.log('selected event', val.target.selectedOptions[0].innerText);
   //    params = val.target.selectedOptions[0].innerText;
   localStorage.setItem('city',val);
@@ -412,7 +412,7 @@ http.setRequestHeader("Access-Control-Allow-Headers", "Access-Control-Allow-Head
     // document.getElementById(cityName).style.display = "block";
     // evt.currentTarget.className += " active";
   }
-  
+
    <!-- function onSelect(A,B,C,D){ -->
 		<!-- console.log(A); -->
 		<!-- console.log(B); -->
@@ -444,16 +444,16 @@ http.setRequestHeader("Access-Control-Allow-Headers", "Access-Control-Allow-Head
   <!-- http.send(A,B,C,D) -->
  <!-- } -->
 <!-- Plotly.d3.csv('https://raw.githubusercontent.com/abachoudhary/cityamericadata/master/data/Map_Msadata.csv', function(err, rows){ -->
-  
+
   <!-- var classArray = unpack(rows, 'class'); -->
 
   <!-- var msa = unpack(rows, 'name');  -->
 <!-- var classes = [...new Set(classArray)]; -->
-   
+
   <!-- function unpack(rows, key) { -->
     <!-- return rows.map(function(row) { return row[key]; }); -->
   <!-- } -->
- 
+
   <!-- var data =[{type: 'scattermapbox', -->
        <!-- lat: unpack(rows, 'reclat'), -->
        <!-- lon: unpack(rows, 'reclong'), -->
@@ -465,12 +465,12 @@ http.setRequestHeader("Access-Control-Allow-Headers", "Access-Control-Allow-Head
 
   <!-- var layout = { -->
      <!-- title: 'MSA Landing Locations', -->
-     
+
      <!-- font: { -->
          <!-- color: 'white' -->
      <!-- }, -->
     <!-- dragmode: 'zoom',  -->
-    
+
     <!-- mapbox: { -->
       <!-- center: { -->
         <!-- lat: 38.03697222,  -->
@@ -502,17 +502,17 @@ http.setRequestHeader("Access-Control-Allow-Headers", "Access-Control-Allow-Head
          <!-- showarrow: false -->
      <!-- }] -->
   <!-- }; -->
-  
+
   <!-- Plotly.setPlotConfig({ -->
     <!-- mapboxAccessToken: 'pk.eyJ1IjoiZXRwaW5hcmQiLCJhIjoiY2luMHIzdHE0MGFxNXVubTRxczZ2YmUxaCJ9.hwWZful0U2CQxit4ItNsiQ' -->
   <!-- }); -->
-  
+
   <!-- Plotly.plot('graphDiv', data, layout, {showSendToCloud: true}); -->
 <!-- }); 	   -->
 $(document).ready(function(){
   // Initialize Tooltip
-  $('[data-toggle="tooltip"]').tooltip(); 
-  
+  $('[data-toggle="tooltip"]').tooltip();
+
   // Add smooth scrolling to all links in navbar + footer link
   $(".navbar a, footer a[href='#myPage']").on('click', function(event) {
 
@@ -530,13 +530,13 @@ $(document).ready(function(){
       $('html, body').animate({
         scrollTop: $(hash).offset().top
       }, 900, function(){
-   
+
         // Add hash (#) to URL when done scrolling (default click behavior)
         window.location.hash = hash;
       });
     } // End if
   });
-})  
+})
  </script>
   <div class="container-fluid bg-3 text-center align-center">
     <h3>Top Five MSA</h3>
@@ -547,7 +547,7 @@ $(document).ready(function(){
         <p><button class="button" style="vertical-align:middle" onclick='onSelectChange("New-York-City-NY")'><span>New York</span></button></p>
         <img src="{{ MEDIA_URL }}new_york.jpg" class="img-responsive" width="100%" alt="New York">
       </div>
-	</div>  
+	</div>
 	<div class="col-sm">
 	  <div class="col-sm-2">
           <!-- <p><button class="button" style="vertical-align:middle" onclick='onSelect("Pittsburgh,PA","50","4500","17000")'><span>Pittsburgh</span></button></p>   -->
@@ -555,7 +555,7 @@ $(document).ready(function(){
           <img src="{{ MEDIA_URL }}Los Angeles Long Beach Anaheim,CA.jpg" class="img-responsive" width="100%"  alt="Los Angeles">
       </div>
 	</div>
-	<div class="col-sm">	
+	<div class="col-sm">
       <div class="col-sm-2">
           <!-- <p><button class="button" style="vertical-align:middle" onclick='onSelect("San Francisco Oakland Hayward","34","6000","15000")'><span>San Francisco</span></button></p>         -->
 		  <p><button class="button" style="vertical-align:middle" onclick='onSelectChange("San-Francisco-Oakland-Hayward-CA")'><span>San Francisco</span></button></p>
@@ -568,14 +568,14 @@ $(document).ready(function(){
 		  <p><button class="button" style="vertical-align:middle" onclick='onSelectChange("Pittsburgh-PA")'><span>Pittsburgh</span></button></p>
           <img src="{{ MEDIA_URL }}pittsburgh.jpg" class="img-responsive" width="100%"  alt="Pittsburgh">
       </div>
-	</div> 
-	<div class="col-sm">	
+	</div>
+	<div class="col-sm">
       <div class="col-sm-2">
           <!-- <p><button class="button" style="vertical-align:middle" onclick='onSelect("Austin Round Rock,TX","56","6700","19000")'><span>Austin</span></button></p>   -->
-		  <p><button class="button" style="vertical-align:middle" onclick='onSelectChange("Austin-Round-Rock-TX")'><span>Austin</span></button></p> 
+		  <p><button class="button" style="vertical-align:middle" onclick='onSelectChange("Austin-Round-Rock-TX")'><span>Austin</span></button></p>
         <img src="{{ MEDIA_URL }}Austin Round Rock.jpg" class="img-responsive"  width="100%"  alt="Austin">
       </div>
-	</div>  
+	</div>
     </div>
   </div>
   <br>
@@ -593,14 +593,9 @@ $(document).ready(function(){
       <div id="home1" class="tab-pane fade in active">
         <h2>Company View</h2>
 		<p>The deliverables are geared toward a company deciding where to expand operations.  The associated analytics are the KNN Nearest Neighbor recommendation engine, text mining techniques to produce relevant news stories and word clouds, and time series analysis informing on the economic trends in the location of interest.</p>
-		<a href = "https://public.tableau.com/profile/nyu.one.america#!/vizhome/Book3_8957/CityViewHomepage">Company View</a>
+		<a href = "https://public.tableau.com/profile/nyu.one.america#!/vizhome/CityView_15556045923060/CityViewHomepage">Company View</a>
         <ul style="text-align: left">
-          <h2>Tableau Charts</h2>
-          <li><a href="https://public.tableau.com/profile/nyu.one.america#!/vizhome/FactorsinFavororNot2/FavorTech">Factors
-              that Favor Tech Hub Citites</a> </li>
-          <li><a href="https://public.tableau.com/profile/nyu.one.america#!/vizhome/Stats_Charts/PricetoIncomebyCity">Price
-              to Income by City</a></li>
-        </ul>
+         </ul>
       </div>
       <div id="menu1" class="tab-pane fade">
         <h2>Talent Specific</h2>
@@ -630,7 +625,7 @@ $(document).ready(function(){
   <a class="up-arrow" href="#myPage" data-toggle="tooltip" title="TO TOP">
     <span class="glyphicon glyphicon-chevron-up"></span>
   </a><br><br>
-  
+
 </footer>
 </body>
 </html>
