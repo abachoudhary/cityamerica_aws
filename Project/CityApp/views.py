@@ -18,7 +18,7 @@ import cgitb
 import codecs
 from urllib.request import urlopen
 import urllib.parse as urlparse
-
+import pandas as pd 
 
 
 
@@ -52,6 +52,16 @@ def getMsa(self):
  except ValueError as e:
         return Response(e.args[0],status.HTTP_400_BAD_REQUEST)
 
+
+def as_currency(amount):
+    if amount >= 0:
+        return '${:,.2f}'.format(amount)
+    else:
+        return '-${:,.2f}'.format(-amount)
+
+def as_Number(amount):
+        return '{:,.2f}'.format(amount)
+         
 @api_view(['GET'])
 def msaDetails(request):
        # return JsonResponse(dict(error=str("Give a valid Input/No Input(MSA) selected")))
@@ -60,14 +70,42 @@ def msaDetails(request):
         if request.method == "GET":
                          msa = str(request.GET.get('NAME'))
                          type = request.GET.get('type', 'default')
-                         #print (msa)
+                         print (msa)
         else:
              return Response(str("Error: GET method Failed!!"))                 # render(request, 'demo/dashboard.html', context_dict)
-        detailsData = dbUtils.getdetails(msa)
-        #print(detailsData)
-        for r in detailsData:
-              data = r[0]
-        return Response(data)
+ 
+ 
+        dataDF = pd.read_csv("website_data.csv")
+        
+        newdict = {}
+        
+        data = dataDF.loc[dataDF['MSA'] == msa]
+        
+        newdict['NAME'] = str(data['MSA'].values[0])
+        newdict['Gross Domestic Product'] = as_Number(int(data['GDP']))
+        newdict['Tech Hub Status'] = data['Tech_Hub']
+        newdict['Population Density'] = as_Number(int(data['PopDensity']))  
+        newdict['Median Household Income'] = as_currency(float(data['MedianIncome']))
+        newdict['Poverty Rate'] = as_Number(int(data['PovertyRate']))   
+        newdict['Property Price to Income Ratio'] = data['PropPricetoIncomeRatio']
+        newdict['Population'] = as_Number(int(data['Population']))
+        newdict['Male to Female Ratio'] = data['MaleFemaleRatio']
+        #newdict['MedianAge'] = data['MedianAge']
+        newdict['Active Labor Force'] = data['Labor']
+        newdict['5-Year Growth in Labor Force'] = data['LaborForceAnnGrowth']
+        newdict['Number of Patents over past 15 years'] = data['Patents']
+        newdict['Submitted Bid for Amazon HQ2'] = data['Amazon']
+        newdict['Number of Servicing Airports'] = data['NumAirline']
+        
+        newdict['Talent Score'] = as_Number(int(data['talent_score']))  
+        newdict['Connect Score'] = as_Number(int(data['connect_score']))   
+        newdict['Cost Score'] = as_Number(int(data['cost_score']))  
+        newdict['Quality Score'] = as_Number(int(data['quality_score']))  
+
+    
+      
+        print(newdict)
+        return Response(newdict)
         # Response["Access-Control-Allow-Credentials"] = "true"
         # Response["Access-Control-Allow-Origin"] = "*"
         # Response["Access-Control-Allow-Methods"] = "GET, OPTIONS"

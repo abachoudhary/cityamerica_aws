@@ -73,101 +73,81 @@ data_model <- read_csv("CityApp/scoretable_final_modified.csv")
 #dim(dat)
 tc <- data <- read_csv("CityApp/data_score_modified.csv")
 data_model <- merge(tc, data_model, by = 'MSA')
-data_model <- data_model[-c(1:6,8:131)]
-data_model <- data_model[-c(2)]
 
-  
+# KNN CODE
+ data_model <- data_model[-c(2:6, 8:39, 41:131)] #keeping estab tech hub and population
+data_model <- data_model[-c(4,9)]
+
+
+#Normlize the variables 
+# function 
+normalize <- function(x) {
+  return ((x - min(x)) / (max(x) - min(x))) }
+# apply function 
+norm1 <- as.data.frame(lapply(data_model[,3:7], normalize))
+#view(norm1)
+
+
+df1<- data_model[,1:2]
+#view(df1)
+combo <- cbind(df1, norm1)
+#view(combo)
+names(combo)[names(combo)=="df1"] <- "TechHub" #strange, this guy didn't work but whatever
+names(combo)[names(combo)=="Poplutation"] <- "Population"
+data_model <- combo
+
+#these are paramters
+#wtalent <- .1
+#wconnect <- .1
+#wcost <- .7
+#wquality <- .1
+
+#these are fixed
+wpop <- .3
+wtech <- .2
+
+
+data_model$Tech_Hub <- as.numeric(data_model$Tech_Hub)
 data_model$talent_score <- data_model$talent_score*wtalent
 data_model$connect_score <- data_model$connect_score*wconnect
 data_model$cost_score <- data_model$cost_score*wcost
 data_model$quality_score <- data_model$quality_score*wquality
-
-prc_train <- data_model[1:356,]
-prc_test <- data_model[5:356,]
-prc_train_labels <- data_model[1:356, 1]
-prc_test_labels <- data_model[5:356, 1]
-#model2 <- knn(train = prc_train, test = prc_test, cl = prc_train_labels, k=10)
-
-#CrossTable(x=prc_test_labels, y=model2, prop.chisq = FALSE)
-#kdist <- knn.dist(model2)
-#view(kdist)
-
-#refit
-model2 <- knn(train = prc_train, test = prc_train, cl = prc_train_labels, k=11)
+data_model$Population <- data_model$Population*wpop
+data_model$Tech_Hub <- data_model$Tech_Hub*wtech
 
 
+#########################################
 
-#Finding the nearest neighbors
-indices <- attr(model2, "nn.index")
+xnew <- data_model[-c(1)]
+y <- data_model[c(7)]
+x <- xnew
 
-#append MSA
-near <- cbind(tc[,1], indices) #MSA name and row number of the nearest neighbor
-colnames(near)=c("MSA", "First", "Second", "Third", "Fourth","Fifth", "Sixth", "Seventh", "Eighth", "Ninth", "Tenth", "Eleventh")
-#temp dataset of the row number and MSA name
-temp <- cbind(seq(1, nrow(data), 1), tc[,1]) 
-colnames(temp)=c("Row", "MSA")
-#First
-near <- merge(near, temp, by.x = "First", by.y = "Row")
-near <- near[, -1]   
-colnames(near)[colnames(near)=="MSA.y"] <- "First"
-colnames(near)[colnames(near)=="MSA.x"] <- "MSA"
-#Second
-near <- merge(near, temp, by.x = "Second", by.y = "Row")
-near <- near[, -1]  
-colnames(near)[colnames(near)=="MSA.y"] <- "Second"
-colnames(near)[colnames(near)=="MSA.x"] <- "MSA"
-#Third
-near <- merge(near, temp, by.x = "Third", by.y = "Row")
-near <- near[, -1] 
-colnames(near)[colnames(near)=="MSA.y"] <- "Third"
-colnames(near)[colnames(near)=="MSA.x"] <- "MSA"
-#Fourth
-near <- merge(near, temp, by.x = "Fourth", by.y = "Row")
-near <- near[, -1] 
-colnames(near)[colnames(near)=="MSA.y"] <- "Fourth"
-colnames(near)[colnames(near)=="MSA.x"] <- "MSA"
-#Fifth
-near <- merge(near, temp, by.x = "Fifth", by.y = "Row")
-near <- near[, -1] 
-colnames(near)[colnames(near)=="MSA.y"] <- "Fifth"
-colnames(near)[colnames(near)=="MSA.x"] <- "MSA"
-#Sixth
-near <- merge(near, temp, by.x = "Sixth", by.y = "Row")
-near <- near[, -1] 
-colnames(near)[colnames(near)=="MSA.y"] <- "Sixth"
-colnames(near)[colnames(near)=="MSA.x"] <- "MSA"
-#Seventh
-near <- merge(near, temp, by.x = "Seventh", by.y = "Row")
-near <- near[, -1] 
-colnames(near)[colnames(near)=="MSA.y"] <- "Seventh"
-colnames(near)[colnames(near)=="MSA.x"] <- "MSA"
-#Eighth
-near <- merge(near, temp, by.x = "Eighth", by.y = "Row")
-near <- near[, -1] 
-colnames(near)[colnames(near)=="MSA.y"] <- "Eighth"
-colnames(near)[colnames(near)=="MSA.x"] <- "MSA"
-#Ninth
-near <- merge(near, temp, by.x = "Ninth", by.y = "Row")
-near <- near[, -1] 
-colnames(near)[colnames(near)=="MSA.y"] <- "Ninth"
-colnames(near)[colnames(near)=="MSA.x"] <- "MSA"
-#Tenth
-near <- merge(near, temp, by.x = "Tenth", by.y = "Row")
-near <- near[, -1] 
-colnames(near)[colnames(near)=="MSA.y"] <- "Tenth"
-colnames(near)[colnames(near)=="MSA.x"] <- "MSA"
-#Eleventh
-near <- merge(near, temp, by.x = "Eleventh", by.y = "Row")
-near <- near[, -1] 
-colnames(near)[colnames(near)=="MSA.y"] <- "Eleventh"
-colnames(near)[colnames(near)=="MSA.x"] <- "MSA"
+ 
+library(FNN)
+indices<-get.knn(xnew, k=10, algorithm=c("brute"))
 
-#dim(near)
-#view(near)
-near <- near[-c(2)]
-#view(near)
-#write.table(near, "knn_yp_noSMOTE.csv", sep=",")
+#The next step is to merge the data into one table.
+#In order to do that we need to create a new table with the neighbours indexes
 
+index_table <- as.data.frame(indices$nn.index,colnames(c("n1","n2","n3","n4","n5", "n6", "n7", "n8", "n9", "n10")))
+
+#After that we just need to replace the index for the MSA name so we know which
+data_model$First <- data_model$MSA[index_table$V1]
+data_model$Second <- data_model$MSA[index_table$V2]
+data_model$Third <- data_model$MSA[index_table$V3]
+data_model$Fourth <- data_model$MSA[index_table$V4]
+data_model$Fifth <- data_model$MSA[index_table$V5]
+data_model$Sixth <- data_model$MSA[index_table$V6]
+data_model$Seventh <- data_model$MSA[index_table$V7]
+data_model$Eighth <- data_model$MSA[index_table$V8]
+data_model$Ninth <- data_model$MSA[index_table$V9]
+data_model$Tenth <- data_model$MSA[index_table$V10]
+
+#can view data_model output for reasonability
+#drop extras and call near
+near <- data_model[-c(2,3,4,5,6,7)]
+  
+# END KNN CODE
 
 selectedmsa <- near[which(near$MSA == msa_selected ), ]
 selectedmsa
@@ -182,7 +162,7 @@ selectedmsa$Sixth = as.character(selectedmsa$Sixth)
 selectedmsa$Seventh = as.character(selectedmsa$Seventh)
 selectedmsa$Eighth = as.character(selectedmsa$Eighth)
 selectedmsa$Ninth = as.character(selectedmsa$Ninth)
-
+selectedmsa$Tenth = as.character(selectedmsa$Tenth)
 x <- toJSON(unname(split(selectedmsa, 1:nrow(selectedmsa))))
 #Check its existence
 if (file.exists(outputfile)) 

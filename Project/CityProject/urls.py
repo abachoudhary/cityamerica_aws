@@ -41,10 +41,13 @@ urlpatterns = [
     path('Homepage2.html',TemplateView.as_view(template_name = 'Homepage2.html')),
     path('details.html',TemplateView.as_view(template_name = 'details.html')),
     path('charts.html',TemplateView.as_view(template_name = 'charts.html')),
-	path('NewHome',TemplateView.as_view(template_name = 'Home.html')),
-	path('KMeanscreen',TemplateView.as_view(template_name = 'KMean home screen.html')),
+	  path('NewHome',TemplateView.as_view(template_name = 'Home.html')),
+	  path('KMeanscreen',TemplateView.as_view(template_name = 'KMean home screen.html')),
     path('source',TemplateView.as_view(template_name = 'DataSources.html')),
     path('analytics',TemplateView.as_view(template_name = 'Analytics.html')),
+    path('companyview',TemplateView.as_view(template_name = 'companyview.html')),
+    path('cityview',TemplateView.as_view(template_name = 'cityview.html')),
+    path('aboutus',TemplateView.as_view(template_name = 'aboutus.html')),
     path('kmeansmodel',views.executekmeansmodel)
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
